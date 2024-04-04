@@ -55,6 +55,9 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: ^6.7.4
     version: 6.21.0(eslint@8.57.0)(typescript@5.4.3)
+  '@vitejs/plugin-basic-ssl':
+    specifier: ^1.1.0
+    version: 1.1.0(vite@5.2.7)
   autoprefixer:
     specifier: ^10.4.19
     version: 10.4.19(postcss@8.4.38)
@@ -4087,6 +4090,15 @@ packages:
 
   /@vanilla-extract/private@1.0.4:
     resolution: {integrity: sha512-8FGD6AejeC/nXcblgNCM5rnZb9KXa4WNkR03HCWtdJBpANjTgjHEglNLFnhuvdQ78tC6afaxBPI+g7F2NX3tgg==}
+    dev: true
+
+  /@vitejs/plugin-basic-ssl@1.1.0(vite@5.2.7):
+    resolution: {integrity: sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==}
+    engines: {node: '>=14.6.0'}
+    peerDependencies:
+      vite: ^3.0.0 || ^4.0.0 || ^5.0.0
+    dependencies:
+      vite: 5.2.7
     dev: true
 
   /@web3-storage/multipart-parser@1.0.0:

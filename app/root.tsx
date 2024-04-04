@@ -1,10 +1,26 @@
-import { NextUIProvider } from "@nextui-org/react";
-import { LinksFunction } from "@remix-run/node";
-import { Links, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import { Button, NextUIProvider, User } from "@nextui-org/react";
+import { LinksFunction, LoaderFunctionArgs, json } from "@remix-run/node";
+import {
+	Form,
+	Link,
+	Links,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	useLoaderData,
+} from "@remix-run/react";
 import stylesheet from "~/styles/tailwind.css?url";
+import { remixAuthenticator } from "./feature/auth/instances/authenticator.server";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: stylesheet }];
 
+export async function loader({ request }: LoaderFunctionArgs) {
+	const user = await remixAuthenticator.isAuthenticated(request);
+	return json({
+		user,
+	});
+}
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
@@ -24,8 +40,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+	const loaderData = useLoaderData<typeof loader>();
+
 	return (
 		<NextUIProvider>
+			<header className="p-4 border-b">
+				{loaderData.user ? (
+					<>
+						<User name={loaderData.user.name} />
+						<Form method="POST" action="/api/auth/signout">
+							<Button type="submit" color="danger">
+								ログアウト
+							</Button>
+						</Form>
+					</>
+				) : (
+					<Button to="/signin" as={Link}>
+						サインイン
+					</Button>
+				)}
+			</header>
 			<Outlet />
 		</NextUIProvider>
 	);
