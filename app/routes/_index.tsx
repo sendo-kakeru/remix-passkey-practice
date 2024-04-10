@@ -6,5 +6,5 @@ export const meta: MetaFunction = () => {
 };
 
 export default function Login() {
-	return <Link href="/signin">サインイン</Link>;
+	return <Link href="/register">サインイン</Link>;
 }

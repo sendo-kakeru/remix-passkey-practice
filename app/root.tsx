@@ -55,7 +55,7 @@ export default function App() {
 						</Form>
 					</>
 				) : (
-					<Button to="/signin" as={Link}>
+					<Button to="/register" as={Link}>
 						サインイン
 					</Button>
 				)}
